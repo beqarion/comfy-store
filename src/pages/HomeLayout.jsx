@@ -1,7 +1,7 @@
+import { Loading } from "@/shared/ui";
+import Header from "@/widgets/Header";
+import Navbar from "@/widgets/Navbar";
 import { Outlet, useNavigation } from "react-router-dom";
-import Header from "../widgets/Header";
-import Navbar from "../widgets/Navbar";
-import { Loading } from "../shared/ui";
 
 function HomeLayout() {
   const navigation = useNavigation();
