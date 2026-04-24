@@ -1,7 +1,14 @@
 {
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
     "module": "CommonJS",
-    "target": "ES6"
+    "target": "ES6",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
   "exclude": [
     "node_modules"
