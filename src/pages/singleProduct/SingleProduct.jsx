@@ -2,14 +2,34 @@ import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { generateAmountOptions } from "./ui/generateAmountOptions";
 import { formatPrice } from "@/shared/utils";
+import { useDispatch } from "react-redux";
+import { addItem } from "@/entities/cart/model";
 
 function SingleProduct() {
   const product = useLoaderData();
+
   const { image, title, price, description, colors, company } =
     product.attributes;
 
   const [productColor, setProductColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
+
+  const cartProduct = {
+    cartID: product.id + productColor,
+    productID: product.id,
+    image,
+    title,
+    price,
+    company,
+    productColor,
+    amount,
+  };
+
+  const dispatch = useDispatch();
+
+  const addToCart = () => {
+    dispatch(addItem({ product: cartProduct }));
+  };
 
   const handleAmount = (e) => {
     setAmount(parseInt(e.target.value));
@@ -74,7 +94,10 @@ function SingleProduct() {
             </div>
             {/* cart btn */}
             <div className="mt-10">
-              <button className="btn btn-secondary btn-md uppercase">
+              <button
+                className="btn btn-secondary btn-md uppercase"
+                onClick={addToCart}
+              >
                 add to bag
               </button>
             </div>
