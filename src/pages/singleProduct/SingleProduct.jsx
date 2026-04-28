@@ -7,6 +7,7 @@ import { addItem } from "@/entities/cart/model";
 
 function SingleProduct() {
   const product = useLoaderData();
+  console.log(product);
 
   const { image, title, price, description, colors, company } =
     product.attributes;
