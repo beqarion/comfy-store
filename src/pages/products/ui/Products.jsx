@@ -10,7 +10,7 @@ export const Products = () => {
     <>
       <Filters meta={meta} />
       <ProductsContainer products={products} meta={meta} />
-      <PaginationContainer />
+      <PaginationContainer meta={meta} />
     </>
   );
 };
