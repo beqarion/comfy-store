@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
 const defaultState = {
@@ -69,7 +69,7 @@ const cartSlice = createSlice({
       toast.error("Item removed from cart");
     },
 
-    clearCart: (state) => {
+    clearCart: () => {
       localStorage.setItem("cart", JSON.stringify(defaultState));
       return defaultState;
     },
