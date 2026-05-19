@@ -8,7 +8,7 @@ import { Products, productsLoader } from "@/pages/products";
 import { productLoader, SingleProduct } from "@/pages/single-product";
 import { Cart } from "@/pages/cart";
 import { About } from "@/pages/about";
-import { Checkout } from "@/pages/checkout";
+import { Checkout, checkoutLoader } from "@/pages/checkout";
 import { Orders } from "@/pages/orders";
 import { Login, loginAction } from "@/pages/login";
 import { Register, registerAction } from "@/pages/register";
@@ -50,6 +50,7 @@ function App() {
         {
           path: "checkout",
           element: <Checkout />,
+          loader: checkoutLoader,
         },
         {
           path: "orders",

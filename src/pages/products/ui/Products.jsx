@@ -4,7 +4,6 @@ import { Filters } from "./Filters";
 
 export const Products = () => {
   const { products, meta } = useLoaderData();
-  console.log({ products, meta });
 
   return (
     <>
