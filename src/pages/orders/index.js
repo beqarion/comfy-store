@@ -1,1 +1,2 @@
-export { Orders } from "./Orders";
+export * from "./ui/orders";
+export { loader as ordersLoader } from "./api/loader";

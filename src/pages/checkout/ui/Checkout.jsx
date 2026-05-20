@@ -1,5 +1,5 @@
 import { CartTotals } from "@/entities/cart";
-import { CheckoutForm } from "@/features/checkout/ui/CheckoutForm";
+import { CheckoutForm } from "@/features/checkout";
 import { SectionTitle } from "@/shared/ui";
 import { useSelector } from "react-redux";
 
@@ -13,7 +13,7 @@ export const Checkout = () => {
   return (
     <>
       <SectionTitle text="place your order" />
-      <div className="mt-8 grid gap-8 md: grid-cols-2 items-start">
+      <div className="mt-8 grid gap-8 md:grid-cols-2 items-start">
         <CheckoutForm />
         <CartTotals />
       </div>

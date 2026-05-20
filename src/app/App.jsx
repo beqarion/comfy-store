@@ -8,8 +8,8 @@ import { Products, productsLoader } from "@/pages/products";
 import { productLoader, SingleProduct } from "@/pages/single-product";
 import { Cart } from "@/pages/cart";
 import { About } from "@/pages/about";
-import { Checkout, checkoutLoader } from "@/pages/checkout";
-import { Orders } from "@/pages/orders";
+import { Checkout, checkoutAction, checkoutLoader } from "@/pages/checkout";
+import { Orders, ordersLoader } from "@/pages/orders";
 import { Login, loginAction } from "@/pages/login";
 import { Register, registerAction } from "@/pages/register";
 import { store } from "./store";
@@ -50,11 +50,13 @@ function App() {
         {
           path: "checkout",
           element: <Checkout />,
-          loader: checkoutLoader,
+          loader: checkoutLoader(store),
+          action: checkoutAction(store),
         },
         {
           path: "orders",
           element: <Orders />,
+          loader: ordersLoader(store),
         },
       ],
     },
