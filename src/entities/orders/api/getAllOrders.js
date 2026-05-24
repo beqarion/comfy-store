@@ -1,6 +1,6 @@
 import { authClient } from "@/shared/api";
 
-export const getAllOrders = async () => {
-  const res = await authClient("/orders");
+export const getAllOrders = async (params) => {
+  const res = await authClient("/orders", { params });
   return res.data;
 };
