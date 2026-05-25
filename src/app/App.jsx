@@ -13,6 +13,9 @@ import { Orders, ordersLoader } from "@/pages/orders";
 import { Login, loginAction } from "@/pages/login";
 import { Register, registerAction } from "@/pages/register";
 import { store } from "./store";
+import { queryClient } from "./config/queryClient";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
   const router = createBrowserRouter([
@@ -73,7 +76,12 @@ function App() {
       action: registerAction,
     },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />;
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
 }
 
 export default App;

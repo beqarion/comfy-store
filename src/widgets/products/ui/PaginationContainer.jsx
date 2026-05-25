@@ -3,18 +3,65 @@ import { useLocation, useNavigate } from "react-router-dom";
 function PaginationContainer({ meta }) {
   const { pageCount, page } = meta.pagination;
 
-  const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
-
   const { search, pathname } = useLocation();
   const navigate = useNavigate();
+
+  const addPageButton = ({ pageNumber, isActive }) => {
+    return (
+      <button
+        key={pageNumber}
+        className={`btn btn-xs sm:btn-md join-item ${isActive ? "bg-base-300 border-base-300" : ""}`}
+        onClick={() => {
+          handlePageChange(pageNumber);
+        }}
+      >
+        {pageNumber}
+      </button>
+    );
+  };
+
+  const renderPageButtons = () => {
+    const pageButtons = [];
+    // first button
+    pageButtons.push(addPageButton({ pageNumber: 1, isActive: page === 1 }));
+
+    // dots 1
+    if (page > 2) {
+      pageButtons.push(
+        <button key="dots-1" className="btn btn-xs sm:btn-md join-item">
+          ...
+        </button>,
+      );
+    }
+
+    // active page
+    if (page !== 1 && page !== pageCount) {
+      pageButtons.push(addPageButton({ pageNumber: page, isActive: true }));
+    }
+
+    // dots 2
+    if (page < pageCount - 1) {
+      pageButtons.push(
+        <button key="dots-2" className="btn btn-xs sm:btn-md join-item">
+          ...
+        </button>,
+      );
+    }
+
+    // last button
+    pageButtons.push(
+      addPageButton({
+        pageNumber: pageCount,
+        isActive: page === pageCount,
+      }),
+    );
+    return pageButtons;
+  };
 
   const handlePageChange = (pageN) => {
     const searchParams = new URLSearchParams(search);
     searchParams.set("page", pageN);
     navigate(`${pathname}?${searchParams.toString()}`);
-    console.log(search);
-    console.log(pathname);
-    console.log(pageN);
   };
 
   if (pageCount < 2) {
@@ -36,19 +83,7 @@ function PaginationContainer({ meta }) {
         >
           prev
         </button>
-        {pages.map((pageN) => {
-          return (
-            <button
-              key={pageN}
-              className={`btn btn-xs sm:btn-md join-item ${pageN === page ? "bg-base-300 border-base-300" : ""}`}
-              onClick={() => {
-                handlePageChange(pageN);
-              }}
-            >
-              {pageN}
-            </button>
-          );
-        })}
+        {renderPageButtons()}
         <button
           className="btn btn-xs sm:btn-md join-item"
           onClick={() => {
