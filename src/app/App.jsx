@@ -8,10 +8,11 @@ import { Products, productsLoader } from "@/pages/products";
 import { productLoader, SingleProduct } from "@/pages/single-product";
 import { Cart } from "@/pages/cart";
 import { About } from "@/pages/about";
-import { Checkout } from "@/pages/checkout";
-import { Orders } from "@/pages/orders";
-import { Login } from "@/pages/login";
-import { Register } from "@/pages/register";
+import { Checkout, checkoutAction, checkoutLoader } from "@/pages/checkout";
+import { Orders, ordersLoader } from "@/pages/orders";
+import { Login, loginAction } from "@/pages/login";
+import { Register, registerAction } from "@/pages/register";
+import { store } from "./store";
 
 function App() {
   const router = createBrowserRouter([
@@ -49,10 +50,13 @@ function App() {
         {
           path: "checkout",
           element: <Checkout />,
+          loader: checkoutLoader(store),
+          action: checkoutAction(store),
         },
         {
           path: "orders",
           element: <Orders />,
+          loader: ordersLoader(store),
         },
       ],
     },
@@ -60,11 +64,13 @@ function App() {
       path: "/login",
       element: <Login />,
       errorElement: <Error />,
+      action: loginAction(store),
     },
     {
       path: "/register",
       element: <Register />,
       errorElement: <Error />,
+      action: registerAction,
     },
   ]);
   return <RouterProvider router={router} />;

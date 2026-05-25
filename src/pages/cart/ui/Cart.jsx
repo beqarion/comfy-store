@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export const Cart = () => {
-  const user = null;
+  const user = useSelector((state) => state.user.user);
   const numItemsInCart = useSelector((state) => state.cart.numItemsInCart);
   if (numItemsInCart === 0) {
     return <SectionTitle text="Your cart is empty" />;

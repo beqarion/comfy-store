@@ -1,4 +1,4 @@
-import { fetchSingleProduct } from "@/shared/api/products";
+import { fetchSingleProduct } from "@/entities/product/api/products";
 
 export const loader = async ({ params }) => {
   const { id } = params;

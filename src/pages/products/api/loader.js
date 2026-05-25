@@ -1,4 +1,4 @@
-import { fetchFilteredProducts } from "@/shared/api";
+import { fetchFilteredProducts } from "@/entities/product";
 
 export const loader = async ({ request }) => {
   const params = Object.fromEntries(new URL(request.url).searchParams);

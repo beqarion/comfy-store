@@ -1,4 +1,4 @@
-import { httpClient } from "./client";
+import { httpClient } from "@/shared/api";
 
 // featured products
 export const fetchFeaturedProducts = async () => {

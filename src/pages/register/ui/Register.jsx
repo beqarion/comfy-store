@@ -9,24 +9,9 @@ export const Register = () => {
         className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4"
       >
         <h4 className="text-center text-3xl font-bold capitalize">register</h4>
-        <FormInput
-          label={"username"}
-          name={"username"}
-          defaultValue={"beqarioni"}
-          type={"text"}
-        />
-        <FormInput
-          label={"email"}
-          name={"email"}
-          defaultValue={"test@test.com"}
-          type={"email"}
-        />
-        <FormInput
-          label={"password"}
-          type={"password"}
-          name={"password"}
-          defaultValue="secret"
-        />
+        <FormInput label={"username"} name={"username"} type={"text"} />
+        <FormInput label={"email"} name={"email"} type={"email"} />
+        <FormInput label={"password"} type={"password"} name={"password"} />
         <div className="mt-4">
           <SubmitBtn text={"register"} />
         </div>
@@ -42,4 +27,4 @@ export const Register = () => {
       </Form>
     </section>
   );
-}
+};

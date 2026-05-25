@@ -1,5 +1,7 @@
 import { useDispatch } from "react-redux";
 import { editItem, removeItem } from "../model/cartSlice";
+import { generateAmountOptions } from "@/shared/ui";
+import { formatPrice } from "@/shared/utils";
 
 export const CartItem = ({ cartItem }) => {
   const dispatch = useDispatch();
@@ -7,21 +9,22 @@ export const CartItem = ({ cartItem }) => {
   const { cartID, title, price, image, amount, company, productColor } =
     cartItem;
 
-  const removeItemFromTheCart = (cartID) => {
+  const removeItemFromTheCart = () => {
     dispatch(removeItem({ cartID }));
   };
 
-  const handleAmount = (cartID, amount) => {
-    dispatch(editItem({ cartID, amount }));
+  const handleAmount = (e) => {
+    dispatch(editItem({ cartID, amount: parseInt(e.target.value) }));
   };
-
   return (
     <article className="mb-12 flex flex-col gap-y-4 sm:flex-row flex-wrap border-b border-base-300 pb-6 last:border-b-0">
+      {/* Image */}
       <img
         src={image}
         alt={title}
         className="h-24 w-24 rounded-lg sm:h-32 sm:w-32 object-cover"
       />
+      {/* Item Info */}
       <div className="sm:ml-16 sm:w-48">
         <h3 className="capitalize font-medium">{title}</h3>
         <h4 className="mt-2 capitalize text-sm text-neutral-content">
@@ -35,13 +38,33 @@ export const CartItem = ({ cartItem }) => {
           ></span>
         </p>
       </div>
+      {/* Item Actions */}
       <div className="sm:ml-12">
+        {/* amount */}
         <div className="form-control max-w-xs">
           <label htmlFor="amount" className="label p-0">
             <span className="label-text">Amount</span>
           </label>
+          <select
+            name="amount"
+            id="amount"
+            className="mt-2 select select-base select-bordered select-xs"
+            value={amount}
+            onChange={handleAmount}
+          >
+            {generateAmountOptions(amount + 5)}
+          </select>
         </div>
+        {/* remove */}
+        <button
+          className="mt-2 link link-primary link-hover text-sm"
+          onClick={removeItemFromTheCart}
+        >
+          remove
+        </button>
       </div>
+      {/* Price */}
+      <p className="font-medium  sm:ml-auto">{formatPrice(price)}</p>
     </article>
   );
 };

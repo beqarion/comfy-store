@@ -1,13 +1,18 @@
+import { useSelector } from "react-redux";
 import { NavLink, useLocation, useNavigation } from "react-router-dom";
 
 const links = [
   { id: 1, text: "home", to: "/" },
-  { id: 2, text: "about", to: "/about" },
-  { id: 3, text: "products", to: "/products" },
-  { id: 4, text: "cart", to: "/cart" },
+  { id: 2, text: "about", to: "about" },
+  { id: 3, text: "products", to: "products" },
+  { id: 4, text: "cart", to: "cart" },
+  { id: 5, text: "checkout", to: "checkout" },
+  { id: 6, text: "orders", to: "orders" },
 ];
 
 function NavLinks() {
+  const user = useSelector((state) => state.user.user);
+
   const navigation = useNavigation();
   const location = useLocation();
 
@@ -28,7 +33,9 @@ function NavLinks() {
 
         /* mark target link as active, even before loading */
         const active = loading || (!isLoading && current);
-
+        if ((to === "checkout" || to === "orders") && !user) {
+          return null;
+        }
         return (
           <li key={id}>
             <NavLink
