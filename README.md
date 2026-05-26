@@ -1,16 +1,46 @@
-# React + Vite
+# Comfy Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A full-featured online shopping app.
 
-Currently, two official plugins are available:
+![Comfy Store](/public/app-screenshot.png)
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## React Compiler
+- React 18
+- React Router 6
+- Redux ToolKit 1.9.5
+- Vite 7
+- tailwind 4
+- TanStack query 4
+- Daisy UI 5
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Project structure is following Feature Sliced Design for scalable architecture.
 
-## Expanding the ESLint configuration
+`Node v25.2.1`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+```
+git clone <repo url>
+```
+
+```
+npm install
+```
+
+```
+npm run dev
+```
+
+- [live site](https://comfy-store-40000.netlify.app/)
+- [repo url](https://github.com/bekarshekiladze/comfy-store)
+
+### Key Features
+
+- Authentication (login/register) with protected routes
+- Product filtering, searching, and pagination
+- Shoping cart with persistent state(localStorage)
+- Theme toggle (light/dark) also persisted
+- Responsive product grid/list view toggle
+- Order history page (auth-gated)
