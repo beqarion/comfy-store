@@ -1,8 +1,8 @@
-import { fetchSingleProduct } from "@/entities/product/api/products";
+import { singleProductQuery } from "@/entities/product/api/products";
+import { queryClient } from "@/shared/api";
 
 export const loader = async ({ params }) => {
   const { id } = params;
-  const data = await fetchSingleProduct(id);
-
-  return data;
+  await queryClient.ensureQueryData(singleProductQuery(id));
+  return id;
 };

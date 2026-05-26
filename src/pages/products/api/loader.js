@@ -1,9 +1,8 @@
-import { fetchFilteredProducts } from "@/entities/product";
+import { filteredProductQuery } from "@/entities/product";
+import { queryClient } from "@/shared/api";
 
 export const loader = async ({ request }) => {
   const params = Object.fromEntries(new URL(request.url).searchParams);
-
-  const res = await fetchFilteredProducts(params);
-  const { data: products, meta } = res;
-  return { products, meta, params };
+  await queryClient.ensureQueryData(filteredProductQuery(params));
+  return { params };
 };

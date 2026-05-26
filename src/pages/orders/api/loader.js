@@ -1,4 +1,5 @@
-import { getAllOrders } from "@/entities/orders";
+import { allOrdersQuery, getAllOrders } from "@/entities/orders";
+import { queryClient } from "@/shared/api";
 import { redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -13,17 +14,6 @@ export const loader =
     const params = Object.fromEntries([
       ...new URL(request.url).searchParams.entries(),
     ]);
-    try {
-      const response = await getAllOrders(params);
-      return { orders: response.data, meta: response.meta };
-    } catch (error) {
-      const errorMessage =
-        error?.response?.data?.error?.message ||
-        "please double check your credentials";
-      toast.error(errorMessage);
-      if (error.response.status === 401 || error.response.status === 403) {
-        return redirect("/login");
-      }
-      return null;
-    }
+    await queryClient.ensureQueryData(allOrdersQuery(params));
+    return { params };
   };

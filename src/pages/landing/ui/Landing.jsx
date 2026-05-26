@@ -1,8 +1,9 @@
+import { featuredProductsQuery } from "@/entities/product";
 import { FeaturedProducts, Hero } from "@/widgets/landing";
-import { useLoaderData } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 export const Landing = () => {
-  const featuredProducts = useLoaderData();
+  const { data: featuredProducts } = useQuery(featuredProductsQuery);
   return (
     <>
       <Hero />

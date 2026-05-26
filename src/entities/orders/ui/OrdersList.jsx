@@ -1,8 +1,6 @@
-import { useLoaderData } from "react-router-dom";
 import day from "dayjs";
 
-export const OrdersList = () => {
-  const { orders, meta } = useLoaderData();
+export const OrdersList = ({ orders, meta }) => {
   return (
     <div className="mt-8">
       <h4 className="mb-4 capitalize">

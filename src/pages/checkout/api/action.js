@@ -1,5 +1,6 @@
 import { clearCart } from "@/entities/cart";
 import { placeOrder } from "@/features/checkout";
+import { queryClient } from "@/shared/api";
 import { formatPrice } from "@/shared/utils";
 import { redirect } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -22,6 +23,7 @@ export const action =
 
     try {
       await placeOrder({ data: compositeData });
+      queryClient.removeQueries({ queryKey: "orders" });
       store.dispatch(clearCart());
       toast.success("order placed successfully");
       return redirect("/orders");

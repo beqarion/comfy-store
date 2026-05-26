@@ -1,3 +1,4 @@
+import { queryClient } from "@/shared/api/queryClient";
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
@@ -40,6 +41,7 @@ const userSlice = createSlice({
     logoutUser: (state) => {
       state.user = null;
       localStorage.removeItem("user");
+      queryClient.clear();
       toast.success("Logged out successfully");
     },
     toggleTheme: (state) => {

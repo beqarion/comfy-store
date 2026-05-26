@@ -1,6 +1,7 @@
-import { fetchFeaturedProducts } from "@/entities/product/api/products";
+import { featuredProductsQuery } from "@/entities/product";
+import { queryClient } from "@/shared/api";
 
 export const loader = async () => {
-  const products = await fetchFeaturedProducts();
-  return products;
+  await queryClient.ensureQueryData(featuredProductsQuery);
+  return null;
 };

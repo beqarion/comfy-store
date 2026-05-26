@@ -1,9 +1,12 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { formatPrice } from "@/shared/utils";
 import { AddToCartForm } from "@/features/add-to-cart";
+import { useQuery } from "@tanstack/react-query";
+import { singleProductQuery } from "@/entities/product";
 
 export const SingleProduct = () => {
-  const product = useLoaderData();
+  const { id } = useParams();
+  const { data: product } = useQuery(singleProductQuery(id));
   console.log(product);
 
   const { image, title, price, description, company } = product.attributes;
